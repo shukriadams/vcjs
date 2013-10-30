@@ -11,14 +11,24 @@
     // -------------------------------------------------------------------------------
     vc.modal = function (options) {
         var defaults = {
-            url: null,      // url to get modal content from
-            content: null,  // static modal content
+            url: null,          // url to get modal content from
+            content: null,      // static modal content
             title: "",
-            onLoaded : null // callback
+            onLoaded: null,     // callback,
+            template: null  // path to EJS template the base modal markup is stored in. A default template is included with template.
         };
 
         options = $.extend(defaults, options);
+
+
+        var template = new EJS({ url: options.template }).render();
         var host = $('#modal-host');
+        if (host.length) {
+            host.remove();
+        }
+        host = $(template);
+        $('body').prepend(host);
+        
         this.host = host;
         var self = this;
 
