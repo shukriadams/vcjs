@@ -20,6 +20,8 @@
 
         options = $.extend(defaults, options);
 
+        if (!options.template)
+            console.log("No modal template set.");
 
         var template = new EJS({ url: options.template }).render();
         var host = $('#modal-host');
@@ -28,7 +30,7 @@
         }
         host = $(template);
         $('body').prepend(host);
-        
+
         this.host = host;
         var self = this;
 
