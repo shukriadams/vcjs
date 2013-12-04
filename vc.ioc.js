@@ -29,17 +29,49 @@ $(function () {
 	    }
     };
 
-    lbi.search.register = function (key, type) {
+    // gets an instance
+    // add optional interface as part of registration contract
+    lbi.search.register = function (key, type, interface) {
         lbi.search.types = lbi.search.types || [];
         lbi.search.types.push({ key: key, type: type });
         console.log('registered type {0}'.format(key));
     };
+    
+    // gets a type
+    lbi.search.getType = function(key){
+	    if (!lbi.search.types || lbi.search.types.length === 0)
+		    throw "No types registered.";
+
+	    if (key){
+		    for (var i = 0 ; i < lbi.search.types.length ; i ++){
+			    var type = lbi.search.types[i];
+			    if (type.key === key)
+				    return new type.type();
+		    }
+		    throw 'Did not find a registerd type {0}'.format(key);
+	    }		
+	    else {
+		    // return default
+		    return new lbi.search.types[0].type;
+	    }        
+    };
+    
     console.log('ready to load types');
+});
+// -------------------------------
+$(function(){
+    var iSearch = function(){};
+    type.prototype = function () { this.apply(this, arguments); };
+    type.prototype.execute = function(){ };
+    
+    window.lbi.search.register("iSearch", iSearch);
 });
 
 // -------------------------------
 // file : lbi.search.google.js
 $(function(){
+    var iSearch = window.lbi.search.getType("iSearch");
+    
 	var type = function(){
 
 	};
@@ -49,7 +81,7 @@ $(function(){
         console.log('you just did a google search, well done!');
 	};
 
-    window.lbi.search.register("google", type);
+    window.lbi.search.register("google", type, iSearch);
 });
 
 // -------------------------------
