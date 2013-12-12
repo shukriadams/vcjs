@@ -203,6 +203,7 @@
         var el = this.options.elements[elementIndex];
         var rule = el.rules[ruleIndex];
 
+        // todo : make done() a callback argument for each validation method.
         if (rule.type === 'required') {
             rule.isValid = this.requiredCheck(el.el);
             _done();
