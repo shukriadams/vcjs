@@ -34,6 +34,23 @@ define('vc', ['jquery'], function ($) {
     };
 
 
+
+    /*======================================================
+     Returns a query string value for name from current
+     location.
+     ------------------------------------------------------*/
+    vc.getQueryString = function (name) {
+        name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+        var regexS = "[\\?&]" + name + "=([^&#]*)";
+        var regex = new RegExp(regexS);
+        var results = regex.exec(window.location.href);
+        if (results == null)
+            return "";
+        else
+            return decodeURIComponent(results[1].replace(/\+/g, " "));
+    };
+
+
     // ======================================================
     // adds string.format support. WARNING : changes string
     // prototype!
