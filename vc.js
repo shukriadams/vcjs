@@ -1,9 +1,11 @@
-﻿$(function () {
+﻿/*======================================================
+ Collection of utility functions.
+------------------------------------------------------*/
+define('vc', ['jquery'], function ($) {
 
     "use strict";
+    var vc = {};
 
-    window.vc = window.vc || {};
-    var vc = window.vc;
 
     // ======================================================
     // stringifies complex objects
@@ -33,7 +35,8 @@
 
 
     // ======================================================
-    // adds string.format support
+    // adds string.format support. WARNING : changes string
+    // prototype!
     // ------------------------------------------------------
     // from http://stackoverflow.com/questions/610406/javascript-equivalent-to-printf-string-format
     String.prototype.format = function () {
@@ -45,7 +48,7 @@
         return formatted;
     };
 
-    
+
     // ======================================================
     // checks if value is in inteCreate format
     // ------------------------------------------------------
@@ -55,7 +58,7 @@
 
 
     // ======================================================
-    // 
+    //
     // ------------------------------------------------------
     vc.hexFromRGB = function (r, g, b) {
         var hex = [
@@ -92,6 +95,7 @@
         });
     };
 
+
     // ======================================================
 
     // ======================================================
@@ -110,4 +114,7 @@
 
         return "{0}:{1}".format(minutes, seconds);
     };
+
+    return vc;
 });
+

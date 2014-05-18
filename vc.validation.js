@@ -256,7 +256,7 @@
                 rule.$fail.show();
 
             if (!callback)
-                throw new 'Callback missing in _validateRule. Call chain is broken';
+                throw 'Callback missing in _validateRule. Call chain is broken';
 
             callback();
         }

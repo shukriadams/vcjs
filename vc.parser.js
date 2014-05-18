@@ -1,12 +1,18 @@
-﻿$(function () {
+﻿/*======================================================
+Human-friendly string handling operations.
+------------------------------------------------------*/
+define('vcparser', [], function () {
 
     "use strict";
 
-    window.peep = window.peep || {};
-    var vc = window.vc;
-    vc.parser = vc.parser || {};
+    var parser = {};
 
-    vc.parser.returnAfterLast = function (main, sub) {
+
+    /*======================================================
+    Returns a substring after the last occurrence of a given
+    preceding string.
+    ------------------------------------------------------*/
+    parser.returnAfterLast = function (main, sub) {
         // if substring doesn't exist in main string, returns zero length string
         if (main.indexOf(sub) == -1)
             return "";
@@ -18,7 +24,12 @@
         return main.substring(main.lastIndexOf(sub) + sub.length);
     };
 
-    vc.parser.returnUptoLast = function (main, sub) {
+
+    /*======================================================
+    Returns a substring leadingup to the last occurrence of
+    a given preceding string.
+    ------------------------------------------------------*/
+    parser.returnUptoLast = function (main, sub) {
         // if substring doesn't exist in main string, returns zero length string
         if (main.indexOf(sub) == -1)
             return "";
@@ -31,4 +42,8 @@
         return main.substring(0, main.lastIndexOf(sub));
     };
 
+
+    return parser;
+
 });
+
