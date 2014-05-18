@@ -1,0 +1,1 @@
+this branch was created to maintain the old namespace based system. The main branch has been moved to Require based AMD.
