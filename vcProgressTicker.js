@@ -1,4 +1,4 @@
-/* dependencies :  jquery*/
+/* dependencies :  jquery */
 define('vcLoader', ['jquery'], function ($) {
 
     "use strict";
