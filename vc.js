@@ -78,6 +78,8 @@ define('vc', ['jquery'], function ($) {
     // Returns true if array contains the given item.
     // ------------------------------------------------------
     vc.arrayContains = function (array, item) {
+        if (array === null || array === undefined)
+            return false;
         return !! ~array.indexOf(item);
     };
 
