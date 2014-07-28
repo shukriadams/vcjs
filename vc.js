@@ -75,6 +75,14 @@ define('vc', ['jquery'], function ($) {
 
 
     // ======================================================
+    // Returns true if array contains the given item.
+    // ------------------------------------------------------
+    vc.arrayContains = function (array, item) {
+        return !! ~array.indexOf(item);
+    };
+
+
+    // ======================================================
     //
     // ------------------------------------------------------
     vc.hexFromRGB = function (r, g, b) {
