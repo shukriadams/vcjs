@@ -43,6 +43,46 @@ define('vcparser', [], function () {
     };
 
 
+    /*======================================================
+    Replaces all instances of substring
+    ------------------------------------------------------*/
+	parser.replaceAll = function (s, replace, wth) {
+        while (s.indexOf(replace) != -1)
+            s = s.replace(replace, wth);
+        return s;
+    };
+
+
+    /*======================================================
+    Returns string between start and end tag
+    ------------------------------------------------------*/
+    parser.returnBetween = function (main, startTag, endTag) {
+        if (main.indexOf(startTag) == -1 || main.indexOf(endTag) == -1)
+            return '';
+        else {
+            if (main.indexOf(startTag) == -1 || main.indexOf(endTag) == -1)
+                return '';
+            else {
+                var startPosition = main.indexOf(startTag) + startTag.length;
+                if (startPosition >= main.length)
+                    return '';
+                var endPosition = main.indexOf(endTag, startPosition);
+                if (endPosition >= main.length)
+                    return '';
+
+                return main.substring(startPosition, endPosition);
+            }
+        }
+    };
+
+
+    /*======================================================
+    Returns true if string ends with substring
+    ------------------------------------------------------*/
+    parser.endsWith = function (main, sub) {
+        return main.indexOf(sub, main.length - sub.length) !== -1;
+    };
+
     return parser;
 
 });
