@@ -75,6 +75,16 @@ define('vc', ['jquery'], function ($) {
 
 
     // ======================================================
+    // Returns true if array contains the given item.
+    // ------------------------------------------------------
+    vc.arrayContains = function (array, item) {
+        if (array === null || array === undefined)
+            return false;
+        return !! ~array.indexOf(item);
+    };
+
+
+    // ======================================================
     //
     // ------------------------------------------------------
     vc.hexFromRGB = function (r, g, b) {
@@ -104,6 +114,10 @@ define('vc', ['jquery'], function ($) {
         });
     };
 
+
+    // ======================================================
+    // binds escape key
+    // ======================================================
     vc.bindEscape = function (fieldidentifier, callback) {
         $(fieldidentifier).keydown(function (d) {
             if (d.keyCode === 27) {
@@ -111,6 +125,35 @@ define('vc', ['jquery'], function ($) {
             }
         });
     };
+
+
+    // ======================================================
+    // gets an "x time" ago for a date.
+    // ======================================================
+    vc.ago = function(date){
+        var diff = new Date().getTime() - date.getTime();
+
+        var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        diff -=  days * (1000 * 60 * 60 * 24);
+
+        var hours = Math.floor(diff / (1000 * 60 * 60));
+        diff -= hours * (1000 * 60 * 60);
+
+        var mins = Math.floor(diff / (1000 * 60));
+        diff -= mins * (1000 * 60);
+
+        var seconds = Math.floor(diff / (1000));
+        diff -= seconds * (1000);
+
+        if (days >= 1)
+            return days + " days";
+        if (hours >= 1)
+            return hours + " hours";
+        if (mins >= 1)
+            return mins + " minutes";
+        else
+            return "seconds";
+    }
 
 
     // ======================================================
