@@ -1,4 +1,10 @@
-﻿/*======================================================
+﻿/*
+
+THIS FILE HAS BEEN MOVED TO YARN!! DO NOT MAINTAIN
+
+*/
+
+/*======================================================
 Human-friendly string handling operations.
 ------------------------------------------------------*/
 define('vcparser', [], function () {

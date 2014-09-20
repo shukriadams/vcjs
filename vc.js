@@ -35,6 +35,7 @@ define('vc', ['jquery'], function ($) {
 
 
     /*======================================================
+    // THIS HAS BEEN MOVED TO YARN
     // Safely combines two parts of a url.
      ------------------------------------------------------*/
     vc.urlCombine = function (part1, part2) {
@@ -61,6 +62,7 @@ define('vc', ['jquery'], function ($) {
 
 
     // ======================================================
+    // THIS HAS BEEN MOVED TO YARN
     // adds string.format support. WARNING : changes string
     // prototype!
     // ------------------------------------------------------
