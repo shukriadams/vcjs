@@ -34,6 +34,15 @@ define('vc', ['jquery'], function ($) {
     };
 
 
+    /*======================================================
+    // Safely combines two parts of a url.
+     ------------------------------------------------------*/
+    vc.urlCombine = function (part1, part2) {
+        part1 = part1.replace(/\/+$/gm, '');
+        part2 = part2.replace(/^\/+/gm, '');
+        return part1 + "/" + part2;
+    };
+
 
     /*======================================================
      Returns a query string value for name from current
