@@ -1,16 +1,37 @@
-﻿/*======================================================
- Collection of utility functions.
-------------------------------------------------------*/
+﻿/**
+ * Collection of utility functions.
+ */
 define('vc', ['jquery'], function ($) {
 
     "use strict";
     var vc = {};
 
 
-    // ======================================================
-    // stringifies complex objects
-    // from http://stackoverflow.com/questions/4816099/chrome-sendrequest-error-typeerror-converting-circular-structure-to-json
-    // ------------------------------------------------------
+    /**
+     * Dynamically add css file
+     */
+    vc.requireCss = function (filename){
+
+        var head = document.getElementsByTagName("head")[0],
+        fileref = head.querySelectorAll('link[href="' + filename + '"]');
+        if (fileref && fileref.length > 0)
+            return;
+
+        fileref = document.createElement("link");
+        fileref.setAttribute("rel", "stylesheet");
+        fileref.setAttribute("type", "text/css");
+        fileref.setAttribute("href", filename);
+
+        if (typeof fileref!== "undefined"){
+            head.appendChild(fileref);
+        }
+    };
+
+
+    /**
+     * stringifies complex objects
+     * from http://stackoverflow.com/questions/4816099/chrome-sendrequest-error-typeerror-converting-circular-structure-to-json
+     **/
     vc.stringify = function (obj) {
         function _censor(censor) {
             return (function () {
@@ -34,10 +55,10 @@ define('vc', ['jquery'], function ($) {
     };
 
 
-    /*======================================================
-    // THIS HAS BEEN MOVED TO YARN
-    // Safely combines two parts of a url.
-     ------------------------------------------------------*/
+    /**
+     * THIS HAS BEEN MOVED TO YARN
+     * Safely combines two parts of a url.
+     */
     vc.urlCombine = function (part1, part2) {
         part1 = part1.replace(/\/+$/gm, '');
         part2 = part2.replace(/^\/+/gm, '');
@@ -45,10 +66,10 @@ define('vc', ['jquery'], function ($) {
     };
 
 
-    /*======================================================
-     Returns a query string value for name from current
-     location.
-     ------------------------------------------------------*/
+    /**
+     * Returns a query string value for name from current
+     * location.
+     */
     vc.getQueryString = function (name) {
         name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
         var regexS = "[\\?&]" + name + "=([^&#]*)";
@@ -61,12 +82,13 @@ define('vc', ['jquery'], function ($) {
     };
 
 
-    // ======================================================
-    // THIS HAS BEEN MOVED TO YARN
-    // adds string.format support. WARNING : changes string
-    // prototype!
-    // ------------------------------------------------------
-    // from http://stackoverflow.com/questions/610406/javascript-equivalent-to-printf-string-format
+    /**
+     * THIS HAS BEEN MOVED TO YARN
+     * adds string.format support. WARNING : changes string
+     * prototype!
+     * ------------------------------------------------------
+     * from http://stackoverflow.com/questions/610406/javascript-equivalent-to-printf-string-format
+     */
     String.prototype.format = function () {
         var formatted = this;
         for (var i = 0; i < arguments.length; i++) {
@@ -77,10 +99,10 @@ define('vc', ['jquery'], function ($) {
     };
 
 
-    // ======================================================
-    // Genereates a GUID
-    // from http://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid-in-javascript
-    // ------------------------------------------------------
+    /**
+     * Genereates a GUID
+     * from http://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid-in-javascript
+     */
     vc.generateUUID = function(){
         var d = new Date().getTime();
         var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
@@ -92,17 +114,17 @@ define('vc', ['jquery'], function ($) {
     };
 
 
-    // ======================================================
-    // checks if value is in inteCreate format
-    // ------------------------------------------------------
+    /**
+     * checks if value is in inteCreate format
+     */
     vc.isInt = function (value) {
         return (parseFloat(value) == parseInt(value)) && !isNaN(value);
     };
 
 
-    // ======================================================
-    // Returns true if array contains the given item.
-    // ------------------------------------------------------
+    /**
+     *  Returns true if array contains the given item.
+     */
     vc.arrayContains = function (array, item) {
         if (array === null || array === undefined)
             return false;
@@ -110,9 +132,9 @@ define('vc', ['jquery'], function ($) {
     };
 
 
-    // ======================================================
-    //
-    // ------------------------------------------------------
+    /**
+     *
+     */
     vc.hexFromRGB = function (r, g, b) {
         var hex = [
             r.toString(16),
@@ -128,10 +150,10 @@ define('vc', ['jquery'], function ($) {
     };
 
 
-    // ======================================================
-    // Bind "enter" key on a field to click a button
-    // usage : vc.bindEnter($('#txtField'), function(){ somelogic.save(); });
-    // ------------------------------------------------------
+    /**
+     * Bind "enter" key on a field to click a button
+     * usage : vc.bindEnter($('#txtField'), function(){ somelogic.save(); });
+     */
     vc.bindEnter = function (fieldidentifier, callback) {
         $(fieldidentifier).keydown(function (d) {
             if (d.keyCode === 13) {
@@ -141,9 +163,9 @@ define('vc', ['jquery'], function ($) {
     };
 
 
-    // ======================================================
-    // binds escape key
-    // ======================================================
+    /**
+     *  binds escape key
+     */
     vc.bindEscape = function (fieldidentifier, callback) {
         $(fieldidentifier).keydown(function (d) {
             if (d.keyCode === 27) {
@@ -153,9 +175,9 @@ define('vc', ['jquery'], function ($) {
     };
 
 
-    // ======================================================
-    // gets an "x time" ago for a date.
-    // ======================================================
+    /**
+     * gets an "x time" ago for a date.
+     */
     vc.ago = function(date){
         var diff = new Date().getTime() - date.getTime();
 
@@ -182,9 +204,9 @@ define('vc', ['jquery'], function ($) {
     }
 
 
-    // ======================================================
-
-    // ======================================================
+    /**
+     *
+     */
     vc.secondsToMinutes = function (seconds) {
         var minutes = Math.floor(seconds / 60);
 
@@ -200,6 +222,37 @@ define('vc', ['jquery'], function ($) {
 
         return "{0}:{1}".format(minutes, seconds);
     };
+
+
+    /**
+     * Compares two arrays of primitives by value. Returns true if the sequence or contents of arrays differ
+     */
+    vc.areArraysIdentical = function(array1, array2){
+        if (array1.length !== array2.length)
+            return false;
+
+        if (!array1 && array2 || array1 && !array2)
+            return false;
+
+        for (var i = 0 ; i < array1.length ; i ++){
+            var item1 = array1[i];
+            var item2 = array2[i];
+
+            if (item1 && !item2 || !item1 && item2)
+                return false;
+
+            for (var property in item1){
+                if (!item1.hasOwnProperty(property) || !item2.hasOwnProperty(property))
+                    continue;
+
+                if (item1[property] !== item2[property])
+                    return false;
+            }
+
+        }
+
+        return true;
+    }
 
     return vc;
 });
