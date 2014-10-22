@@ -8,21 +8,33 @@ define('vc', ['jquery'], function ($) {
 
 
     /**
-     * Dynamically add css file
+     * Dynamically add a css file to document. If adding an href or id that has already been added, the existing one is replaced.
+     * Works on Chrome, FF, IE8+.
+     * @param {string} href - path to css file. Required.
+     * @param {string} [id] - A unique name for the file being added. If specified, 
      */
-    vc.requireCss = function (filename){
+    vc.requireCss = function (href, id){
 
-        var head = document.getElementsByTagName("head")[0],
-        fileref = head.querySelectorAll('link[href="' + filename + '"]');
-        if (fileref && fileref.length > 0)
-            return;
+        var head = document.getElementsByTagName("head")[0];
+        var fileref;
+        
+        if (id)
+            fileref = head.querySelectorAll('link[id="' + id + '"]');
+        else
+            fileref = head.querySelectorAll('link[href="' + href + '"]');
 
-        fileref = document.createElement("link");
+        if (fileref && fileref.length === 0) {
+            fileref = document.createElement("link");
+        }
+        
         fileref.setAttribute("rel", "stylesheet");
         fileref.setAttribute("type", "text/css");
-        fileref.setAttribute("href", filename);
+        fileref.setAttribute("href", href);
+        if (id){
+            fileref.setAttribute("id", id);
+        }
 
-        if (typeof fileref!== "undefined"){
+        if (typeof fileref !== "undefined"){
             head.appendChild(fileref);
         }
     };
