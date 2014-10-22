@@ -22,9 +22,11 @@ define('vc', ['jquery'], function ($) {
             fileref = head.querySelectorAll('link[id="' + id + '"]');
         else
             fileref = head.querySelectorAll('link[href="' + href + '"]');
-
-        if (fileref && fileref.length === 0) {
+        
+        if (fileref.length === 0) {
             fileref = document.createElement("link");
+        } else {
+            fileref = fileref[0];
         }
         
         fileref.setAttribute("rel", "stylesheet");
