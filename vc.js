@@ -8,23 +8,45 @@ define('vc', ['jquery'], function ($) {
 
 
     /**
-     * Dynamically add css file
+     * Dynamically add a css file to document. If adding an href or id that has already been added, the existing one is replaced.
+     * Works on Chrome, FF, IE8+. An IE7 fallback provides partial support.
+     * @param {string} href - path to css file. Required.
+     * @param {string} [id] - A unique name for the file being added. If specified, 
      */
-    vc.requireCss = function (filename){
+    vc.requireCss = function (href, id){
 
-        var head = document.getElementsByTagName("head")[0],
-        fileref = head.querySelectorAll('link[href="' + filename + '"]');
-        if (fileref && fileref.length > 0)
-            return;
+		// partial IE 7 fallback. Reimplement unique checks.
+		if (document.createStyleSheet)
+		{
+		    document.createStyleSheet(href);
+		    return;
+		}
 
-        fileref = document.createElement("link");
-        fileref.setAttribute("rel", "stylesheet");
-        fileref.setAttribute("type", "text/css");
-        fileref.setAttribute("href", filename);
+        var head = document.getElementsByTagName("head")[0];
+        var fileref;
+        
+        if (id)
+            fileref = head.querySelectorAll('link[id="' + id + '"]');
+        else
+            fileref = head.querySelectorAll('link[href="' + href + '"]');
 
-        if (typeof fileref!== "undefined"){
-            head.appendChild(fileref);
+        if (fileref && fileref.length === 0) {
+            fileref = document.createElement("link");
+        } else {
+            fileref = fileref[0];
         }
+
+		// note : append element BEFORE setting attributes, due to an IE quirk
+        head.appendChild(fileref);
+
+        fileref.setAttribute("type", "text/css");
+        fileref.setAttribute("rel", "stylesheet");
+        if (id){
+            fileref.setAttribute("id", id);
+        }
+        // note : href must be added LAST because of an IE quirk
+        fileref.setAttribute("href", href);
+        
     };
 
 
