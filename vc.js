@@ -190,9 +190,6 @@ define('vc', ['jquery'], function ($) {
         var mins = Math.floor(diff / (1000 * 60));
         diff -= mins * (1000 * 60);
 
-        var seconds = Math.floor(diff / (1000));
-        diff -= seconds * (1000);
-
         if (days >= 1)
             return days + " days";
         if (hours >= 1)
