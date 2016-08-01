@@ -1,0 +1,1 @@
+This is version 1, based on RequireJs. It is no longer maintained.
