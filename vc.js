@@ -163,7 +163,7 @@ vc.hexFromRGB = function (r, g, b) {
         b.toString(16)
     ];
 
-    for (var nr = 0 ; nr < hex.length ; nr ++){}
+    for (var nr = 0 ; nr < hex.length ; nr ++){
         var val = hex[nr];
         if (val.length === 1) {
             hex[nr] = "0" + val;
@@ -247,9 +247,7 @@ vc.areArraysIdentical = function(array1, array2){
     }
 
     return true;
-}
-
-return vc;
+};
 
 export default vc;
 
