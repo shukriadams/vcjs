@@ -48,6 +48,13 @@ vc.requireCss = function (href, id){
     
 };
 
+/**
+ * Comma separates large number
+ * http://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
+ * */
+vc.separateLargeNumber = function(number){
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+};
 
 /**
  * stringifies complex objects
@@ -119,6 +126,13 @@ String.prototype.format = function () {
     return formatted;
 };
 
+/**
+ * Generates a random number between min and max
+ **/
+vc.random = function(min,max)
+{
+    return Math.floor( Math.random() * (max - min + 1) + min );
+};
 
 /**
  * Genereates a GUID
