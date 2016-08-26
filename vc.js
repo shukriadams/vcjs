@@ -232,6 +232,12 @@ vc.secondsToMinutes = function (seconds) {
     return "{0}:{1}".format(minutes, seconds);
 };
 
+/**
+ * Returns true of dom element has css class
+ **/
+vc.hasClass = function(element, cssClass){
+    return element.className.split(' ').indexOf(cssClass) !== -1;
+};
 
 /**
  * Tests if child desecends from parent
