@@ -234,6 +234,35 @@ vc.secondsToMinutes = function (seconds) {
 
 
 /**
+ * Tests if child desecends from parent
+ **/
+vc.isDescendentOf = function(child, parent){
+    while (child){
+
+        if (typeof(parent) === 'string' && child.className.indexOf(parent) !== -1)
+            return true;
+        else if (child === parent)
+            return true;
+
+        child = child.parentElement;
+    }
+
+    return false;
+};
+
+vc.findClosest = function(child, parentClass){
+    while (child){
+
+        if (child.className.indexOf(parentClass) !== -1)
+            return child;
+
+        child = child.parentElement;
+    }
+
+    return null;
+};
+
+/**
  * Compares two arrays of primitives by value. Returns true if the sequence or contents of arrays differ
  */
 vc.areArraysIdentical = function(array1, array2){
