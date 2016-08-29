@@ -49,6 +49,24 @@ vc.requireCss = function (href, id){
 };
 
 /**
+ * Very quick and dirty waitfor
+ **/
+vc.waitFor = function(check, callback, interval, maxTries){
+    var i = 0,
+        timer = setInterval(function(){
+            if (check() === true){
+                clearInterval(timer);
+                callback();
+            }
+            i++;
+            if (i > maxTries){
+                clearInterval(timer);
+                throw 'Too many attempts for waitFor';
+            }
+    }, interval);
+};
+
+/**
  * Comma separates large number
  * http://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
  * */
