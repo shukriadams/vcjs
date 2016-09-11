@@ -274,7 +274,11 @@ vc.isDescendentOf = function(child, parent){
     return false;
 };
 
-vc.findClosest = function(child, parentClass){
+
+/**
+ * Finds the first parent element with the class parentClass. 
+ **/
+vc.closest = function(child, parentClass){
     while (child){
 
         if (child.className.split(' ').indexOf(parentClass) !== -1)
@@ -285,6 +289,7 @@ vc.findClosest = function(child, parentClass){
 
     return null;
 };
+
 
 /**
  * Compares two arrays of primitives by value. Returns true if the sequence or contents of arrays differ
