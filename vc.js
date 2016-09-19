@@ -66,6 +66,16 @@ vc.waitFor = function(check, callback, interval, maxTries){
     }, interval);
 };
 
+
+/**
+ * Chained wait.then 
+ **/
+vc.wait = function(delay, callback){
+    window.setTimeout(callback, delay);
+    return this;
+};
+vc.then = vc.wait;
+
 /**
  * Comma separates large number
  * http://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
