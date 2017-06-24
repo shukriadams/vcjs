@@ -68,6 +68,21 @@ vc.waitFor = function(check, callback, interval, maxTries){
 
 
 /**
+ * Generates a unique hash of a string. Based on https://stackoverflow.com/a/33647870/1216792
+ */
+vc.hash = function(string){
+    var hash = 0, i = 0,
+        len = string.length;
+
+    while ( i < len ) {
+        hash  = ((hash << 5) - hash + string.charCodeAt(i++)) << 0;
+    }
+
+    return hash;
+};
+
+
+/**
  * Chained wait.then 
  **/
 vc.wait = function(delay, callback){
