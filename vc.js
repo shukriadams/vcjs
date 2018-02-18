@@ -275,12 +275,14 @@ vc.secondsToMinutes = function (seconds) {
     return "{0}:{1}".format(minutes, seconds);
 };
 
+
 /**
- * Returns true of dom element has css class
+ * Returns true of dom element has css class. with "classList" this method is no longer necessary, deprecate.
  **/
 vc.hasClass = function(element, cssClass){
-    return element.className.split(' ').indexOf(cssClass) !== -1;
+    return element.classList.contains(cssClass);
 };
+
 
 /**
  * Tests if child desecends from parent
