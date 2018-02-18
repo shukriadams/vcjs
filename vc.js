@@ -317,6 +317,22 @@ vc.closest = function(child, parentClass){
 
 
 /**
+ * Finds the first parent element with the attribute attributeName.
+ **/
+vc.closestWithAttribute = function(child, attributeName){
+    while (child){
+
+        if (child.hasAttribute(attributeName))
+            return child;
+
+        child = child.parentElement;
+    }
+
+    return null;
+};
+
+
+/**
  * Compares two arrays of primitives by value. Returns true if the sequence or contents of arrays differ
  */
 vc.areArraysIdentical = function(array1, array2){
