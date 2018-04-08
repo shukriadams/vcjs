@@ -154,22 +154,6 @@ vc.getQueryString = function (name) {
 
 
 /**
- * THIS HAS BEEN MOVED TO YARN
- * adds string.format support. WARNING : changes string
- * prototype!
- * ------------------------------------------------------
- * from http://stackoverflow.com/questions/610406/javascript-equivalent-to-printf-string-format
- */
-String.prototype.format = function () {
-    var formatted = this;
-    for (var i = 0; i < arguments.length; i++) {
-        var regexp = new RegExp('\\{' + i + '\\}', 'gi');
-        formatted = formatted.replace(regexp, arguments[i]);
-    }
-    return formatted;
-};
-
-/**
  * Generates a random number between min and max
  **/
 vc.random = function(min,max)
@@ -378,6 +362,14 @@ vc.areArraysIdentical = function(array1, array2){
 
     return true;
 };
+
+
+/**
+ * Basic regex test for email format. Won't catch 100% of errors, but good enough.
+ */
+vc.emailFormatValid = function(email){
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
 
 export default vc;
 
