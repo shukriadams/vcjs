@@ -256,7 +256,7 @@ vc.secondsToMinutes = function (seconds) {
     if (seconds.length == 1)
         seconds = "0" + seconds;
 
-    return "{0}:{1}".format(minutes, seconds);
+    return `${minutes}:${seconds}`;
 };
 
 
