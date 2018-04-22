@@ -302,6 +302,24 @@ vc.isDescendentOf = function(child, parent){
 
 
 /**
+ * Finds first parent with a string css classname property. This is useful when handling SVG elements which 
+ * have object classname elements, and are often a complex nested mess of sub elements.
+ * 
+ * Returns null if nothing found.
+ */
+vc.findParentWithStringClass = function (element){
+    
+    while(element){
+        if (typeof(element.className) === 'string')
+            return element;
+        element = element.parentElement;
+    }
+    
+    return null;
+}
+
+
+/**
  * Finds the first parent element with the class parentClass. 
  **/
 vc.closest = function(child, parentClass){
