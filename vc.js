@@ -324,20 +324,20 @@ vc.findParentWithStringClass = function (element){
  */
 vc.offset = function offset(element)
 {
-    let offset = {
+    let result = {
         left: 0,
         top: 0
     };
 
     do {
         if (!isNaN(element.offsetLeft))
-            offset.left += element.offsetLeft;
+            result.left += element.offsetLeft;
         if (!isNaN(element.offsetTop))
-            offset.top += element.offsetTop;
+            result.top += element.offsetTop;
 
     } while(element = element.offsetParent);
 
-    return offset;
+    return result;
 }
 
 
