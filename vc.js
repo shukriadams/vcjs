@@ -319,6 +319,28 @@ vc.findParentWithStringClass = function (element){
 }
 
 
+/** 
+ * Gets the top and left offset of an element - this is identical to jquery's $(element).offset()
+ */
+vc.offset = function offset(element)
+{
+    let offset = {
+        left: 0,
+        top: 0
+    };
+
+    do {
+        if (!isNaN(element.offsetLeft))
+            offset.left += element.offsetLeft;
+        if (!isNaN(element.offsetTop))
+            offset.top += element.offsetTop;
+
+    } while(element = element.offsetParent);
+
+    return offset;
+}
+
+
 /**
  * Finds the first parent element with the class parentClass. 
  **/
