@@ -284,19 +284,22 @@ vc.index = function (element){
 
 
 /**
- * Tests if child desecends from parent
+ * Tests if child desecends from parent in DOM tree.
+ * Childs must be a DOM element.
+ * Parent can be a DOM element, or string className (not a selector)
  **/
 vc.isDescendentOf = function(child, parent){
-    if (typeof(parent) !== 'string')
-        throw 'Parent must be a class name';
         
     while (child){
-
-        if (child.className.split(' ').indexOf(parent) !== -1)
+        
+        // check if tested element has parent class name
+        if (typeof(parent) === 'string' && child.className.split(' ').indexOf(parent) !== -1)
             return true;
+        // test if tested element is parent
         else if (child === parent)
             return true;
-
+        
+        // ascend one node in DOM
         child = child.parentElement;
     }
 
