@@ -287,9 +287,12 @@ vc.index = function (element){
  * Tests if child desecends from parent
  **/
 vc.isDescendentOf = function(child, parent){
+    if (typeof(parent) !== 'string')
+        throw 'Parent must be a class name';
+        
     while (child){
 
-        if (typeof(parent) === 'string' && child.className.split(' ').indexOf(parent) !== -1)
+        if (child.className.split(' ').indexOf(parent) !== -1)
             return true;
         else if (child === parent)
             return true;
@@ -299,24 +302,6 @@ vc.isDescendentOf = function(child, parent){
 
     return false;
 };
-
-
-/**
- * Finds first parent with a string css classname property. This is useful when handling SVG elements which 
- * have object classname elements, and are often a complex nested mess of sub elements.
- * 
- * Returns null if nothing found.
- */
-vc.findParentWithStringClass = function (element){
-    
-    while(element){
-        if (typeof(element.className) === 'string')
-            return element;
-        element = element.parentElement;
-    }
-    
-    return null;
-}
 
 
 /** 
@@ -347,7 +332,7 @@ vc.offset = function offset(element)
 vc.closest = function(child, parentClass){
     while (child){
 
-        if (child.className.split(' ').indexOf(parentClass) !== -1)
+        if (typeof(child.className) === 'string' && child.className.split(' ').indexOf(parentClass) !== -1)
             return child;
 
         child = child.parentElement;
