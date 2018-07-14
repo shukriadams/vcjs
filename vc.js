@@ -284,7 +284,7 @@ vc.isDescendentOf = function(child, parent){
     while (child){
         
         // check if tested element has parent class name
-        if (typeof(parent) === 'string' && child.className.split(' ').indexOf(parent) !== -1)
+        if (typeof(parent) === 'string' && child.classList.contains(parent))
             return true;
         // test if tested element is parent
         else if (child === parent)
