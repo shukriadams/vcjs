@@ -207,6 +207,7 @@ vc.hexFromRGB = function (r, g, b) {
 
 /**
  * gets an "x time" ago for a date.
+ * DEPRECATED : use s-ago package instead.
  */
 vc.ago = function(date){
     var diff = new Date().getTime() - date.getTime();
@@ -232,7 +233,7 @@ vc.ago = function(date){
 
 
 /**
- *
+ * DEPRECATED - moved to timebelt package
  */
 vc.secondsToMinutes = function (seconds) {
     var minutes = Math.floor(seconds / 60);
@@ -353,7 +354,7 @@ vc.closestWithAttribute = function(child, attributeName){
 
 
 /**
- * Compares two arrays of primitives by value. Returns true if the sequence or contents of arrays differ
+ * Compares two arrays of primitives by value. Returns true if the sequence or contents of arrays differ.
  */
 vc.areArraysIdentical = function(array1, array2){
     if (array1.length !== array2.length)

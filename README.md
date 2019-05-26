@@ -1,0 +1,1 @@
+vsJS - collection of javascript utility functions.
