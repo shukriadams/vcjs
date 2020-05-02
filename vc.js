@@ -264,14 +264,7 @@ vc.hasClass = function(element, cssClass){
  *  Gets the index of the element in its sibling collection.
  */
 vc.index = function (element){
-    let i = -1;
-
-    while(element){
-        element = element.previousSibling;
-        i++;
-    }
-
-    return i;
+	return [].indexOf.call(element.parentElement.children, element)
 };
 
 
